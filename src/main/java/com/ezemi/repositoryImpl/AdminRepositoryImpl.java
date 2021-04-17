@@ -13,7 +13,6 @@ import com.ezemi.entity.Bank;
 import com.ezemi.entity.CardType;
 import com.ezemi.entity.Category;
 import com.ezemi.entity.EmiCard;
-import com.ezemi.entity.EmiType;
 import com.ezemi.entity.Order;
 import com.ezemi.entity.User;
 import com.ezemi.repository.AdminRepository;
@@ -38,7 +37,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 	
 	@Override
 	public List<User> getUsersByBankId(int bankId) {
-		String jpql = "select u from User u where u.bankDetaills.bank.bankId=:bId";
+		String jpql = "select u from User u where u.bankDetails.bank.bankId=:bId";
 		TypedQuery<User> query = em.createQuery(jpql,User.class);
 		query.setParameter("bId", bankId);
 		return query.getResultList();
@@ -66,20 +65,8 @@ public class AdminRepositoryImpl implements AdminRepository {
 		return em.find(Category.class, categoryId);
 	}
 	
-	@Override
-	@Transactional
-	public void addEmiType(int numberOfMonths){
-		EmiType et = new EmiType();
-		et.setNumberOfMonths(numberOfMonths);
+
 	
-		em.merge(et);
-	
-	}
-	
-	@Override
-	public EmiType getEmiTypeById(int emiTypeId){
-		return em.find(EmiType.class, emiTypeId);
-	}
 	
 	@Override
 	@Transactional

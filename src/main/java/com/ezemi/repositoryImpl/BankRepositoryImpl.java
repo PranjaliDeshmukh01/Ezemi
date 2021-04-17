@@ -25,8 +25,8 @@ public class BankRepositoryImpl implements BankRepository {
 	}
 
 	@Override
-	public void getBankById(int bankId) {
-		em.find(Bank.class, bankId);
+	public Bank getBankById(int bankId) {
+		return em.find(Bank.class, bankId);
 		
 	}
 
