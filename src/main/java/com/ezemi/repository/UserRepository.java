@@ -3,10 +3,8 @@ package com.ezemi.repository;
 import java.util.List;
 
 import com.ezemi.entity.Address;
-import com.ezemi.entity.Bank;
 import com.ezemi.entity.BankDetails;
 import com.ezemi.entity.EmiCard;
-import com.ezemi.entity.Order;
 import com.ezemi.entity.User;
 
 public interface UserRepository {

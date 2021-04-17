@@ -7,6 +7,7 @@ import com.ezemi.entity.EmiType;
 import com.ezemi.entity.Product;
 
 public interface ProductRepository {
+	
 	public void addOrUpdareAProduct(Product product);
 	
 	public Product getProductById(int productId);

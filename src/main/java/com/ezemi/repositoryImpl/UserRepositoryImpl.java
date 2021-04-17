@@ -127,11 +127,12 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	
-	
+
 	@Override
 	public EmiCard getCardByUserId(int userId) {
 		return getUserById(userId).getCard();
 	}
+	
 
 	@Override
 	@Transactional
