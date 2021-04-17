@@ -39,7 +39,6 @@ public class AccountServiceImpl implements AccountService{
 	}
 	
 	
-
 	@Override
 	public User isUserValid(String email, String password) {
 		User user = userRepo.getUserByEmail(email);
