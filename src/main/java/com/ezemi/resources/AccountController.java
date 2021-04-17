@@ -1,6 +1,8 @@
 package com.ezemi.resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ezemi.dto.LoginDto;
@@ -17,8 +19,16 @@ public class AccountController {
 	AccountService accountService;
 	
 	
+	@PostMapping("/register")
+	public Boolean register(@RequestBody User user) {
+		return accountService.registerUser(user);
+	}
 	
-	public LoginStatusDto login(LoginDto logindto) {
+	
+	
+	
+	@PostMapping("/login")
+	public LoginStatusDto login(@RequestBody LoginDto logindto) {
 		User user = accountService.isUserValid(logindto.getEmailId(), logindto.getPassword());
 		LoginStatusDto lsd = new LoginStatusDto();
 		if(user==null) {

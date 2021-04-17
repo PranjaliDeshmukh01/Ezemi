@@ -90,6 +90,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 	@Override
 	@Transactional
 	public void changeCardofUser(String emiCardNo, int cardTypeId){
+	
 		EmiCard card = em.find(EmiCard.class, emiCardNo);
 		CardType ct = em.find(CardType.class, cardTypeId);
 		card.setCardType(ct);

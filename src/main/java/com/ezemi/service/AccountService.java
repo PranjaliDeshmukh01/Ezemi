@@ -8,6 +8,6 @@ public interface AccountService {
 
 	public User isUserValid(String email, String password);
 
-	public boolean changePassword(String newPassword);
+	public boolean changePassword(int userId, String newPassword);
 
 }

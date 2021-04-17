@@ -59,15 +59,7 @@ public class EmiCard {
 	public void setCreditLeft(double creditLeft) {
 		this.creditLeft = creditLeft;
 	}
-
-	public CardType getCardType() {
-		return cardType;
-	}
-
-	public void setCardType(CardType cardType) {
-		this.cardType = cardType;
-	}
-
+	
 	public LocalDate getExpiryDate() {
 		return expiryDate;
 	}
@@ -91,6 +83,23 @@ public class EmiCard {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public String getEmiCardNo() {
+		return emiCardNo;
+	}
+
+	public void setEmiCardNo(String emiCardNo) {
+		this.emiCardNo = emiCardNo;
+	}
+
+	public CardType getCardType() {
+		return cardType;
+	}
+
+	public void setCardType(CardType cardType) {
+		this.cardType = cardType;
+	}
+	
 	
 	
 }

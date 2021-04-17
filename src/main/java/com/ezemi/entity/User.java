@@ -37,12 +37,17 @@ public class User {
 	
 	String designation;
 	
+	RoleType role;
+	
 	@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
 	BankDetails bankDetails;
 
 	@OneToOne(mappedBy = "user",cascade=CascadeType.ALL)
 	Address address;
 
+	int cardTypeId;
+	
+	
 	@OneToOne(mappedBy = "user",cascade=CascadeType.ALL)
 	EmiCard card;
 
@@ -55,9 +60,8 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	List<Transaction> transactions;
-	
-	RoleType role;
 
+	
 	public int getUserId() {
 		return userId;
 	}
@@ -193,4 +197,14 @@ public class User {
 	public void setRole(RoleType role) {
 		this.role = role;
 	}
+
+	public int getCardTypeId() {
+		return cardTypeId;
+	}
+
+	public void setCardTypeId(int cardTypeId) {
+		this.cardTypeId = cardTypeId;
+	}
+	
+	
 }

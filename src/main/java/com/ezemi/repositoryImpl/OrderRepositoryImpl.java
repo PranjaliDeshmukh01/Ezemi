@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Temporal;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -48,6 +49,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 	}
 
 	@Override
+	@Transactional
 	public void shipOrder(int orderId) {
 		Order order = em.find(Order.class, orderId);
 		order.setShipped(true);
