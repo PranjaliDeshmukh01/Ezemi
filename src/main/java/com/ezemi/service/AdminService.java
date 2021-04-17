@@ -19,7 +19,7 @@ public interface AdminService {
 	
 	void activateCustomer();
 	
-	Product addProduct(Product product);
+	void addProduct(Product product);
 	
 	Bank addBank(Bank bank);
 	
