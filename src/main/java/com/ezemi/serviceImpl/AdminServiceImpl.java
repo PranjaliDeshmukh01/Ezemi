@@ -9,9 +9,9 @@ import com.ezemi.entity.EmiType;
 import com.ezemi.entity.Product;
 import com.ezemi.entity.User;
 import com.ezemi.repository.AdminRepository;
-import com.ezemi.service.AdminSerivce;
+import com.ezemi.service.AdminService;
 
-public class AdminServiceImpl implements AdminSerivce {
+public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	AdminRepository adminRepo;

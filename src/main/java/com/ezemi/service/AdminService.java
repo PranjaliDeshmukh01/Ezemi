@@ -7,7 +7,7 @@ import com.ezemi.entity.EmiType;
 import com.ezemi.entity.Product;
 import com.ezemi.entity.User;
 
-public interface AdminSerivce {
+public interface AdminService {
 
 	List<User> getAllCustomers();
 	
