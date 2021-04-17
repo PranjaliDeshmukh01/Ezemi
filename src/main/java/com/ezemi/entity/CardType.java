@@ -40,9 +40,13 @@ public class CardType {
 		return creditAmount;
 	}
 
+
 	public void setCreditAmount(Double creditAmount) {
+
 		this.creditAmount = creditAmount;
 	}
+
+
 
 	
 }

@@ -27,10 +27,8 @@ public class AdminRepositoryImpl implements AdminRepository {
 
 	@Override
 	@Transactional
-	public void addOrUpdateBank(Bank bank) {
-		
-		em.merge(bank);
-		
+	public void addOrUpdateBank(Bank bank) {	
+		em.merge(bank);		
 	}
 
 	@Override
@@ -49,17 +47,13 @@ public class AdminRepositoryImpl implements AdminRepository {
 	@Override
 	@Transactional
 	public void addOrUpdatecategory(Category ct) {
-
 		em.merge(ct);
-
 	}
 	
 	@Override
 	@Transactional
 	public void addOrUpdateCardType(CardType ct) {
-
 		em.merge(ct);
-
 	}
 	
 	@Override
@@ -90,6 +84,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 	@Override
 	@Transactional
 	public void changeCardofUser(String emiCardNo, int cardTypeId){
+	
 		EmiCard card = em.find(EmiCard.class, emiCardNo);
 		CardType ct = em.find(CardType.class, cardTypeId);
 		card.setCardType(ct);

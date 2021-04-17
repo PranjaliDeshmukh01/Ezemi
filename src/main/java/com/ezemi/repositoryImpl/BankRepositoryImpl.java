@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +19,7 @@ public class BankRepositoryImpl implements BankRepository {
 	EntityManager em;
 	
 	@Override
+	@Transactional
 	public void addOrUpdateBank(Bank bank) {
 		em.merge(bank);
 	}
