@@ -8,17 +8,20 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import org.springframework.stereotype.Repository;
+
 import com.ezemi.entity.Category;
 import com.ezemi.entity.Product;
 import com.ezemi.repository.ProductRepository;
 
-@Transactional
+@Repository
 public class ProductRepositoryImpl implements ProductRepository {
 
 	@PersistenceContext
 	EntityManager em;
 
 	@Override
+	@Transactional
 	public void addOrUpdareAProduct(Product product) {
 		em.merge(product);
 	}

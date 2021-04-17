@@ -22,8 +22,6 @@ public interface UserRepository {
 	
 	public void approveUser(int userId);	
 	
-	public void addOrUpdateDetails(Bank details);
-	
 	public User getUserByEmail(String email);
 	
 	public void deleteUserById(int userId);

@@ -27,9 +27,7 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	@Transactional
 	public void registerorUpdateUser(User user) {
-
 		em.merge(user);
-
 	}
 
 	@Override
@@ -129,17 +127,11 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	
-
-	@Override
-	@Transactional
-	public void addOrUpdateDetails(Bank details) {
-		em.merge(details);
-	}
-	
 	@Override
 	public EmiCard getCardByUserId(int userId) {
 		return getUserById(userId).getCard();
 	}
+	
 
 	@Override
 	@Transactional

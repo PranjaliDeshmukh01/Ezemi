@@ -18,7 +18,7 @@ public class CardType {
 	
 	String cardTypeName;
 	
-	Double creditAmout;
+	Double creditAmount;
 
 	public int getCardTypeId() {
 		return cardTypeId;
@@ -36,11 +36,11 @@ public class CardType {
 		this.cardTypeName = cardTypeName;
 	}
 
-	public Double getCreditAmout() {
-		return creditAmout;
+	public Double getCreditAmount() {
+		return creditAmount;
 	}
 
-	public void setCreditAmout(Double creditAmout) {
-		this.creditAmout = creditAmout;
+	public void setCreditAmout(Double creditAmount) {
+		this.creditAmount = creditAmount;
 	}
 }

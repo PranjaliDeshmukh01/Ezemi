@@ -48,6 +48,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 	}
 
 	@Override
+	@Transactional
 	public void shipOrder(int orderId) {
 		Order order = em.find(Order.class, orderId);
 		order.setShipped(true);
