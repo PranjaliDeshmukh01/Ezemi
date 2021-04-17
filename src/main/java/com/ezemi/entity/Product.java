@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="tbl_Product")
 public class Product {
@@ -105,7 +107,8 @@ public class Product {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-
+	
+	@JsonIgnore
 	public List<Order> getOrders() {
 		return orders;
 	}

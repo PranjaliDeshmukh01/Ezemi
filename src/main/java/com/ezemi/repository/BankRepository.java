@@ -9,7 +9,7 @@ public interface BankRepository {
 	
 	public void addOrUpdateBank(Bank bank);
 	
-	public void getBankById(int bankId);
+	public Bank getBankById(int bankId);
 	
 	public List<User> getUsersByBankId(int bankId);
 

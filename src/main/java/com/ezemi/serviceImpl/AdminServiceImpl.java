@@ -8,16 +8,11 @@ import org.springframework.stereotype.Service;
 import com.ezemi.entity.Bank;
 import com.ezemi.entity.CardType;
 import com.ezemi.entity.Category;
-import com.ezemi.entity.EmiType;
 import com.ezemi.entity.Product;
 import com.ezemi.entity.User;
 import com.ezemi.repository.AdminRepository;
-
-import com.ezemi.service.AdminService;
-
 import com.ezemi.repository.ProductRepository;
-
-
+import com.ezemi.repository.UserRepository;
 import com.ezemi.service.AdminService;
 
 @Service
@@ -25,6 +20,9 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	AdminRepository adminRepo;
+	
+	@Autowired
+	UserRepository userRepo;
 	
 	@Autowired
 	ProductRepository productRepo;
@@ -48,9 +46,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void activateCustomer() {
-		// TODO Auto-generated method stub
-		
+	public void activateCustomer(int userId) {
+		userRepo.approveUser(userId);
 	}
 
 	@Override
@@ -60,16 +57,10 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Bank addBank(Bank bank) {
-		// TODO Auto-generated method stub
-		return null;
+	public void addBank(Bank bank) {
+		adminRepo.addOrUpdateBank(bank);
 	}
 
-	@Override
-	public EmiType addEmiType(EmiType emiType) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void addOrUpdatecategory(Category ct) {

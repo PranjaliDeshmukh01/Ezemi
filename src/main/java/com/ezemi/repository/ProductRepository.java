@@ -3,7 +3,6 @@ package com.ezemi.repository;
 import java.util.List;
 
 import com.ezemi.entity.Category;
-import com.ezemi.entity.EmiType;
 import com.ezemi.entity.Product;
 
 public interface ProductRepository {

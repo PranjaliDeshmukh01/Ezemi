@@ -27,8 +27,7 @@ public class Order {
 	
 	LocalDate orderDate;
 	
-	@ManyToOne
-	EmiType emiType;
+	int emiMonths;
 	
 	int installments;
 	
@@ -43,6 +42,14 @@ public class Order {
 	boolean isShipped;
 	
 	
+	
+	public int getEmiMonths() {
+		return emiMonths;
+	}
+
+	public void setEmiMonths(int emiMonths) {
+		this.emiMonths = emiMonths;
+	}
 
 	public boolean isShipped() {
 		return isShipped;
@@ -90,14 +97,6 @@ public class Order {
 
 	public void setOrderDate(LocalDate orderDate) {
 		this.orderDate = orderDate;
-	}
-
-	public EmiType getEmiType() {
-		return emiType;
-	}
-
-	public void setEmiType(EmiType emiType) {
-		this.emiType = emiType;
 	}
 
 	public int getInstallments() {

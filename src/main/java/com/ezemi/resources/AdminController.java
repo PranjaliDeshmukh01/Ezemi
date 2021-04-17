@@ -3,22 +3,27 @@ package com.ezemi.resources;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ezemi.dto.ProductDto;
 import com.ezemi.dto.Status;
 import com.ezemi.dto.Status.StatusType;
+import com.ezemi.entity.Bank;
 import com.ezemi.entity.CardType;
 import com.ezemi.entity.Category;
 import com.ezemi.entity.Product;
 import com.ezemi.service.AdminService;
+import com.ezemi.service.ProductService;
 
 @RestController
 @CrossOrigin
@@ -26,6 +31,7 @@ public class AdminController {
 	
 	@Autowired
 	AdminService adminService ;
+	
 	
 	@PostMapping(path="/addcategory")
 	public Status addOrUpdatecategory(@RequestBody Category ct) {
@@ -93,7 +99,27 @@ public class AdminController {
 		
 		return status;
 	}
-
+	
+	@PostMapping(path="/addbank")
+	public Status addOrUpdateBank(@RequestBody Bank bank) {
+		adminService.addBank(bank);
+		Status status = new Status();
+		status.setStatus(StatusType.SUCCESS);
+		status.setMessage("Bank Added!");
+		return status;
+	}
+	
+	@GetMapping(path="/activateuser")
+	public Status activateUser(@RequestParam("userId") int userId) {
+		adminService.activateCustomer(userId);
+		Status status = new Status();
+		status.setStatus(StatusType.SUCCESS);
+		status.setMessage("User Activated!");
+		return status;
+	}
+	
+	
+	
 }
 
 

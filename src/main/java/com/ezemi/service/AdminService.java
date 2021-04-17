@@ -5,7 +5,6 @@ import java.util.List;
 import com.ezemi.entity.Bank;
 import com.ezemi.entity.CardType;
 import com.ezemi.entity.Category;
-import com.ezemi.entity.EmiType;
 import com.ezemi.entity.Product;
 import com.ezemi.entity.User;
 
@@ -17,13 +16,11 @@ public interface AdminService {
 	
 	List<User> getApprovedCustomers();
 	
-	void activateCustomer();
+	void activateCustomer(int userId);
 	
 	void addProduct(Product product);
 	
-	Bank addBank(Bank bank);
-	
-	EmiType addEmiType(EmiType emiType);
+	void addBank(Bank bank);
 	
 	void addOrUpdatecategory(Category ct);
 	

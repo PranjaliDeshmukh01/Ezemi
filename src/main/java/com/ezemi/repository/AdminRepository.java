@@ -5,7 +5,6 @@ import java.util.List;
 import com.ezemi.entity.Bank;
 import com.ezemi.entity.CardType;
 import com.ezemi.entity.Category;
-import com.ezemi.entity.EmiType;
 import com.ezemi.entity.User;
 
 public interface AdminRepository {
@@ -25,9 +24,6 @@ public interface AdminRepository {
 	
 	public Category getCategoryById(int categoryId);
 	
-	public void addEmiType(int numberOfMonths);
-	
-	public EmiType getEmiTypeById(int emiTypeId);
 	
 	public void changeCardofUser(String emiCardNo, int cardTypeId);
 

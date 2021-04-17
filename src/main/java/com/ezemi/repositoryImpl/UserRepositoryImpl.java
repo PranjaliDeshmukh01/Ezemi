@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
@@ -32,10 +33,15 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public User getUserByEmail(String email) {
-		String jpql = "select u from User u where u.userEmail=:ue";
+		try {
+		String jpql = "select u from User u where u.email=:ue";
 		return em.createQuery(jpql, User.class)
 				.setParameter("ue", email)
 				.getSingleResult();
+		}
+		catch(NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
@@ -71,6 +77,7 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
+	@Transactional
 	public void approveUser(int userId) {
 		User user = getUserById(userId);
 		user.setIsApproved(true);
@@ -155,4 +162,6 @@ public class UserRepositoryImpl implements UserRepository {
 		User u = getUserByEmail(email);
 		return u!=null;
 	}
+	
+	
 }
