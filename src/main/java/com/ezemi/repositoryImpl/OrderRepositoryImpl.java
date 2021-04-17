@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Temporal;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -35,7 +34,6 @@ public class OrderRepositoryImpl implements OrderRepository {
 		order.setAmountDue(order.getAmountDue() - order.getEmiAmount());
 		order.setInstallments(order.getInstallments() + 1);
 		em.merge(order);
-
 	}
 
 	@Override

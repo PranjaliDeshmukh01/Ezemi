@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.ezemi.helper.RandomPinGenerator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -76,6 +77,7 @@ public class EmiCard {
 		this.isActivated = isActivated;
 	}
 
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}

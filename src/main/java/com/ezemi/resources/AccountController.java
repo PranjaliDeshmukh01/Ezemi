@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ezemi.dto.LoginDto;
 import com.ezemi.dto.LoginStatusDto;
+import com.ezemi.dto.RegisterDto;
 import com.ezemi.dto.RoleType;
-import com.ezemi.dto.Status.StatusType;
+import com.ezemi.dto.Status;
 import com.ezemi.entity.User;
 import com.ezemi.service.AccountService;
 
@@ -20,8 +21,8 @@ public class AccountController {
 	
 	
 	@PostMapping("/register")
-	public Boolean register(@RequestBody User user) {
-		return accountService.registerUser(user);
+	public Status register(@RequestBody RegisterDto regdto) {
+		return accountService.registerUser(regdto);
 	}
 	
 	
