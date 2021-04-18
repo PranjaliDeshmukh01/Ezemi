@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ezemi.entity.Category;
 import com.ezemi.entity.Product;
 import com.ezemi.repository.ProductRepository;
 import com.ezemi.service.ProductService;
@@ -24,6 +25,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product getProductById(int userId) {
 		return productRepo.getProductById(userId);
+	}
+
+	@Override
+	public List<Category> getAllCategory() {
+		return productRepo.getAllCategories();
 	}
 
 }

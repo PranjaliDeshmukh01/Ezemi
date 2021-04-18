@@ -45,6 +45,7 @@ public class AdminController {
 		
 	}
 	
+	
 	@PostMapping(path = "/addproduct")
 	public Status addOrUpdateProduct(@ModelAttribute ProductDto productDto) {
 		
@@ -95,7 +96,7 @@ public class AdminController {
 		
 		Status status = new Status();
 		status.setStatus(StatusType.SUCCESS);
-		status.setMessage("Category Added!");
+		status.setMessage("Card Type Added!");
 		
 		return status;
 	}
