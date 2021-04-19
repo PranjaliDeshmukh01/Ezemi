@@ -1,7 +1,10 @@
 package com.ezemi.service;
 
+import java.util.List;
+
 import com.ezemi.dto.RegisterDto;
 import com.ezemi.dto.Status;
+import com.ezemi.entity.Bank;
 import com.ezemi.entity.User;
 
 public interface AccountService {
@@ -12,4 +15,5 @@ public interface AccountService {
 
 	public boolean changePassword(int userId, String newPassword);
 
+	public List<Bank> getAllBanks();
 }

@@ -12,6 +12,8 @@ public class LoginStatusDto {
 	
 	String statusMsg;
 
+	
+	
 	public String getEmail() {
 		return email;
 	}

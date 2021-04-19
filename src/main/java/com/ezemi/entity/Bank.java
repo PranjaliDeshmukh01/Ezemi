@@ -10,6 +10,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="tbl_Bank")
 public class Bank {
@@ -40,6 +42,7 @@ public class Bank {
 		this.bankName = bankName;
 	}
 
+	@JsonIgnore
 	public List<BankDetails> getUserBankDetails() {
 		return userBankDetails;
 	}

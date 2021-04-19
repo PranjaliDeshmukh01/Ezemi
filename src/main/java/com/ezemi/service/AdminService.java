@@ -2,6 +2,7 @@ package com.ezemi.service;
 
 import java.util.List;
 
+import com.ezemi.dto.Status;
 import com.ezemi.entity.Bank;
 import com.ezemi.entity.CardType;
 import com.ezemi.entity.Category;
@@ -27,5 +28,7 @@ public interface AdminService {
 	Category getCategoryById(int categoryId);
 	
 	void addOrUpdateCardType(CardType cardType);
+	
+	public Status addAdmin(String name,String email, String password);
 	
 }

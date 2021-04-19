@@ -1,5 +1,7 @@
 package com.ezemi.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class RegisterDto {
 
 	String firstname;
@@ -17,8 +19,6 @@ public class RegisterDto {
 	String companyAddress;
 
 	String designation;
-	
-	String panCardNo;
 
 	int bankId;
 
@@ -35,6 +35,28 @@ public class RegisterDto {
 	String city;
 
 	String pinCode;
+	
+	MultipartFile adharCardImg;
+	
+	MultipartFile panCardImg;
+	
+	public MultipartFile getAdharCardImg() {
+		return adharCardImg;
+	}
+
+	public void setAdharCardImg(MultipartFile adharCardImg) {
+		this.adharCardImg = adharCardImg;
+	}
+
+	public MultipartFile getPanCardImg() {
+		return panCardImg;
+	}
+
+	public void setPanCardImg(MultipartFile panCardImg) {
+		this.panCardImg = panCardImg;
+	}
+
+
 
 	public String getFirstname() {
 		return firstname;
@@ -45,13 +67,6 @@ public class RegisterDto {
 	}
 
 	
-	public String getPanCardNo() {
-		return panCardNo;
-	}
-
-	public void setPanCardNo(String panCardNo) {
-		this.panCardNo = panCardNo;
-	}
 
 	public String getLastname() {
 		return lastname;

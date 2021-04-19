@@ -31,7 +31,7 @@ public interface UserRepository {
 
 	public List<User> getUsersByName(String uname);
 
-	public void activateCard(String emiCardNo);
+	public void activateCard(int userId);
 
 	User isValid(String userEmail, String userPassword);
 

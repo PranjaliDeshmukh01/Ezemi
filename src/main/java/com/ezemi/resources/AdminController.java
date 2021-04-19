@@ -3,7 +3,6 @@ package com.ezemi.resources;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ezemi.dto.ProductDto;
+import com.ezemi.dto.RegAdminDto;
 import com.ezemi.dto.Status;
 import com.ezemi.dto.Status.StatusType;
 import com.ezemi.entity.Bank;
@@ -23,7 +23,6 @@ import com.ezemi.entity.CardType;
 import com.ezemi.entity.Category;
 import com.ezemi.entity.Product;
 import com.ezemi.service.AdminService;
-import com.ezemi.service.ProductService;
 
 @RestController
 @CrossOrigin
@@ -119,7 +118,10 @@ public class AdminController {
 		return status;
 	}
 	
-	
+	@PostMapping("/registeradmin")
+	public Status register(@RequestBody RegAdminDto regdto) {
+		return adminService.addAdmin(regdto.getName(), regdto.getEmailId(), regdto.getPassword());
+	}
 	
 }
 

@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ezemi.dto.RoleType;
@@ -18,12 +19,16 @@ import com.ezemi.entity.BankDetails;
 import com.ezemi.entity.EmiCard;
 import com.ezemi.entity.User;
 import com.ezemi.repository.UserRepository;
+import com.ezemi.service.EmailService;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
 	@PersistenceContext
 	EntityManager em;
+	
+	@Autowired
+	EmailService emailServie;
 
 	@Override
 	@Transactional
@@ -67,13 +72,12 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	@Transactional
-	public void activateCard(String cardNo) {
-		EmiCard card = em.find(EmiCard.class, cardNo);
+	public void activateCard(int userId) {
+		User u = em.find(User.class, userId);
+		EmiCard card = u.getCard();
 		card.setIsActivated(true);
 		card.setExpiryDate(LocalDate.now().plusYears(2));
-
 		em.merge(card);
-
 	}
 
 	@Override
@@ -81,6 +85,9 @@ public class UserRepositoryImpl implements UserRepository {
 	public void approveUser(int userId) {
 		User user = getUserById(userId);
 		user.setIsApproved(true);
+		String text ="Congratulations! Your application for ezEmi "+user.getCard().getCardType().getCardTypeName()+" is approved. Pay for initial fee and start enjoying the benefits.";
+		String subject ="ezEmi card approved!";
+		emailServie.sendEmail(user.getEmail(), text, subject);
 		registerorUpdateUser(user);
 	}
 

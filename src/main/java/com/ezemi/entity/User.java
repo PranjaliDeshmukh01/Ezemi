@@ -39,8 +39,10 @@ public class User {
 	
 	RoleType role;
 	
-	String panCardNo;
-
+	String panCard;
+	
+	String adharCard;
+	
 	Boolean isApproved;
 	
 	@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
@@ -58,6 +60,7 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	List<Transaction> transactions;
 
+	
 	
 	public int getUserId() {
 		return userId;
@@ -155,13 +158,6 @@ public class User {
 		this.card = card;
 	}
 
-	public String getPanCardNo() {
-		return panCardNo;
-	}
-
-	public void setPanCardNo(String panCardNo) {
-		this.panCardNo = panCardNo;
-	}
 
 	public Boolean getIsApproved() {
 		return isApproved;
@@ -194,4 +190,22 @@ public class User {
 	public void setRole(RoleType role) {
 		this.role = role;
 	}
+
+	public String getPanCard() {
+		return panCard;
+	}
+
+	public void setPanCard(String panCard) {
+		this.panCard = panCard;
+	}
+
+	public String getAdharCard() {
+		return adharCard;
+	}
+
+	public void setAdharCard(String adharCard) {
+		this.adharCard = adharCard;
+	}
+	
+	
 }
