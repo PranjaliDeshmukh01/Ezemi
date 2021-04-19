@@ -16,9 +16,12 @@ public interface AdminRepository {
 	
 	public List<User> getUsersByBankId(int bankId);
 	
+	
 	public void addOrUpdatecategory(Category ct);
 	
+	
 	public void addOrUpdateCardType(CardType ct);
+	
 	
 	public CardType getCardTypeById(int ctId);
 	
@@ -28,4 +31,12 @@ public interface AdminRepository {
 	public void changeCardofUser(String emiCardNo, int cardTypeId);
 
 	void autoDebit();
+	
+	
+	
+	public List<CardType> getAllCardTypes();
+	
+	public void deleteACategory(int categoryId);
+	
+	
 }

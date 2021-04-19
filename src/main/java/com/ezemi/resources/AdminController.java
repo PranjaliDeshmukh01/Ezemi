@@ -22,6 +22,7 @@ import com.ezemi.entity.Bank;
 import com.ezemi.entity.CardType;
 import com.ezemi.entity.Category;
 import com.ezemi.entity.Product;
+import com.ezemi.entity.User;
 import com.ezemi.service.AdminService;
 import com.ezemi.service.ProductService;
 
@@ -120,6 +121,38 @@ public class AdminController {
 	}
 	
 	
+	
+	@GetMapping(path="/allbank")
+	public List<Bank> getAllBank(){
+		return adminService.getallBanks();
+	}
+	
+	
+	@GetMapping(path="/allcardtype")
+	public List<CardType> getAllCardTypes(){
+		return adminService.getAllCardType();
+	}
+	
+	
+//	@PostMapping(path="/deleteacategory")
+//	public Status deleteACategory(@RequestParam("categoryId") int categoryId) {
+//		
+//		adminService.deleteACategory(categoryId);
+//		Status status = new Status();
+//		status.setStatus(StatusType.SUCCESS);
+//		status.setMessage("Deleted Category!");
+//		return status;
+//	}
+	
+	@GetMapping(path="/getnotapprovedusers")
+	public List<User> getNotApprovedUsers(){
+		return adminService.getNotApprovedUsers();
+	}
+	
+	@GetMapping(path="/getapprovedusers")
+	public List<User> getApprovedUsers(){
+		return adminService.getApprovedCustomers();
+	}
 	
 }
 

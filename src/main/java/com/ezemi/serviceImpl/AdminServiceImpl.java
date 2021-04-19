@@ -11,6 +11,7 @@ import com.ezemi.entity.Category;
 import com.ezemi.entity.Product;
 import com.ezemi.entity.User;
 import com.ezemi.repository.AdminRepository;
+import com.ezemi.repository.BankRepository;
 import com.ezemi.repository.ProductRepository;
 import com.ezemi.repository.UserRepository;
 import com.ezemi.service.AdminService;
@@ -26,23 +27,23 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	ProductRepository productRepo;
+	
+	@Autowired
+	BankRepository bankRepo;
 
 	@Override
 	public List<User> getAllCustomers() {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepo.getAllCustomers();
 	}
 
 	@Override
 	public List<User> getNotApprovedUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepo.getNotApprovedCustomers();
 	}
 
 	@Override
 	public List<User> getApprovedCustomers() {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepo.getApprovedCustomers();
 	}
 
 	@Override
@@ -76,6 +77,23 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void addOrUpdateCardType(CardType cardType) {
 		adminRepo.addOrUpdateCardType(cardType);
+		
+	}
+
+	@Override
+	public List<Bank> getallBanks() {
+		return bankRepo.getAllBanks();
+	}
+
+	
+	@Override
+	public List<CardType> getAllCardType() {
+		return adminRepo.getAllCardTypes();
+	}
+
+	@Override
+	public void deleteACategory(int categoryId) {
+		adminRepo.deleteACategory(categoryId);
 		
 	}
 
