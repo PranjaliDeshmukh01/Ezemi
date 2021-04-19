@@ -15,6 +15,7 @@ import com.ezemi.entity.Category;
 import com.ezemi.entity.Product;
 import com.ezemi.entity.User;
 import com.ezemi.repository.AdminRepository;
+import com.ezemi.repository.BankRepository;
 import com.ezemi.repository.ProductRepository;
 import com.ezemi.repository.UserRepository;
 import com.ezemi.service.AdminService;
@@ -35,26 +36,29 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	EmailService emailServie;
 	
+	@Autowired
+	BankRepository bankRepo;
+	
 	private String encryptPassword(String password) {
 		return BCrypt.hashpw(password, BCrypt.gensalt());
 	}
 
+	
+
+
 	@Override
 	public List<User> getAllCustomers() {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepo.getAllCustomers();
 	}
 
 	@Override
 	public List<User> getNotApprovedUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepo.getNotApprovedCustomers();
 	}
 
 	@Override
 	public List<User> getApprovedCustomers() {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepo.getApprovedCustomers();
 	}
 
 	@Override
@@ -114,4 +118,22 @@ public class AdminServiceImpl implements AdminService {
 		}
 		return status;
 	}
+
+	public List<Bank> getallBanks() {
+		return bankRepo.getAllBanks();
+	}
+
+	
+	@Override
+	public List<CardType> getAllCardType() {
+		return adminRepo.getAllCardTypes();
+	}
+
+	@Override
+	public void deleteACategory(int categoryId) {
+		adminRepo.deleteACategory(categoryId);
+		
+	}
+
+
 }

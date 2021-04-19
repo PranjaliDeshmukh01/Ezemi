@@ -21,5 +21,7 @@ public interface UserService {
 	public void updateBankDetails(int userId,BankDetails bankDetails);
 	
 	public void payEmi(int userId, int orderId);
+	
+	public void activateCard(int userId);
 
 }

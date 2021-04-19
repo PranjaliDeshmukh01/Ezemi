@@ -28,7 +28,18 @@ public interface AdminService {
 	Category getCategoryById(int categoryId);
 	
 	void addOrUpdateCardType(CardType cardType);
+
 	
 	public Status addAdmin(String name,String email, String password);
+	
+
+	
+	List<Bank> getallBanks();
+	
+	List<CardType> getAllCardType();
+	
+	void deleteACategory(int categoryId);
+	
+	
 	
 }
