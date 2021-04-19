@@ -91,7 +91,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public List<User> getAllCustomers() {
-		String jpql = "select u from User u where User.role=:r";
+		String jpql = "select u from User u where u.role=:r";
 		TypedQuery<User> query = em.createQuery(jpql, User.class);
 		query.setParameter("r", RoleType.Customer);
 		return query.getResultList();
@@ -99,7 +99,7 @@ public class UserRepositoryImpl implements UserRepository {
 	
 	@Override
 	public List<User> getApprovedCustomers() {
-		String jpql = "select u from User u where User.role=:r and User.isApproved=:tr";
+		String jpql = "select u from User u where u.role=:r and u.isApproved=:tr";
 		TypedQuery<User> query = em.createQuery(jpql, User.class);
 		query.setParameter("r", RoleType.Customer);
 		query.setParameter("tr", true);
@@ -108,10 +108,10 @@ public class UserRepositoryImpl implements UserRepository {
 	
 	@Override
 	public List<User> getNotApprovedCustomers() {
-		String jpql = "select u from User u where User.role=:r  and User.isApproved=:f";
+		String jpql = "select u from User u where u.role=:r  and u.isApproved=0";
 		TypedQuery<User> query = em.createQuery(jpql, User.class);
 		query.setParameter("r", RoleType.Customer);
-		query.setParameter("f", false);
+		//query.setParameter("f", false);
 		return query.getResultList();
 	}
 	

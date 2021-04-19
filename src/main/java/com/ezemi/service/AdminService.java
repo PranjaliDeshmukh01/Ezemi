@@ -28,4 +28,13 @@ public interface AdminService {
 	
 	void addOrUpdateCardType(CardType cardType);
 	
+	
+	List<Bank> getallBanks();
+	
+	List<CardType> getAllCardType();
+	
+	void deleteACategory(int categoryId);
+	
+	
+	
 }

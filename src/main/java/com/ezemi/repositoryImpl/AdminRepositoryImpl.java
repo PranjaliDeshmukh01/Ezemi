@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -85,5 +86,24 @@ public class AdminRepositoryImpl implements AdminRepository {
 		String jpql = "select o from Order o where o.autoDebit=:tr and ";
 		TypedQuery<Order> query = em.createQuery(jpql, Order.class);
 		query.setParameter("tr", true);
+	}
+	
+	
+
+	@Override
+	public List<CardType> getAllCardTypes() {
+		String jpql = "select c from CardType c";
+		return em.createQuery(jpql, CardType.class).getResultList();
+	}
+
+	@Override
+	@Transactional
+	public void deleteACategory(int categoryId) {
+		String jpql="delete c from Category c where c.categoryId=:cId";
+		Query query = em.createQuery(jpql);
+		query.setParameter("cId", categoryId);
+		
+		query.executeUpdate();
+		
 	}
 }
