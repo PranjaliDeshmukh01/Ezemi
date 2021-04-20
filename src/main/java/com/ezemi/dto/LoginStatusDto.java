@@ -18,6 +18,16 @@ public class LoginStatusDto {
 	
 	boolean isCardActivated;
 	
+	
+	
+	public boolean isCardActivated() {
+		return isCardActivated;
+	}
+
+	public void setCardActivated(boolean isCardActivated) {
+		this.isCardActivated = isCardActivated;
+	}
+
 	public int getCardType() {
 		return cardType;
 	}
