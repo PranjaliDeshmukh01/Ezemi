@@ -13,4 +13,7 @@ public interface ProductService {
 	
 	List<Category> getAllCategory();
 	
+	boolean inStockToggle(int productId);
+	
+	
 }

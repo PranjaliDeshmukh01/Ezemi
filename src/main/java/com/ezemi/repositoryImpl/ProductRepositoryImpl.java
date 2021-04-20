@@ -7,11 +7,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import org.springframework.stereotype.Repository;
 
 import com.ezemi.entity.Category;
 import com.ezemi.entity.Product;
@@ -53,6 +50,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 	}
 
 	@Override
+	@Transactional
 	public boolean inStockToggle(int productId) {
 		Product product = em.find(Product.class, productId);
 		boolean state = !product.isInStock();
@@ -65,4 +63,6 @@ public class ProductRepositoryImpl implements ProductRepository {
 		String jpql ="select c from Category c";
 		return em.createQuery(jpql, Category.class).getResultList();
 	}
+
+	
 }
