@@ -1,6 +1,11 @@
 package com.ezemi.resources;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ezemi.dto.Status;
+
 import com.ezemi.dto.Status.StatusType;
 import com.ezemi.entity.User;
 import com.ezemi.service.UserService;
+
+import com.ezemi.entity.Product;
+
 
 @RestController
 @CrossOrigin
@@ -33,4 +42,5 @@ public class UserController {
 		User user=userService.getUserById(userId);
 		return user;
 	}
+	
 }
