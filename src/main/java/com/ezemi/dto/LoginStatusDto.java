@@ -12,8 +12,28 @@ public class LoginStatusDto {
 	
 	String statusMsg;
 
+	int cardType;
 	
+	double ceditLeft;
 	
+	boolean isCardActivated;
+	
+	public int getCardType() {
+		return cardType;
+	}
+
+	public void setCardType(int cardType) {
+		this.cardType = cardType;
+	}
+
+	public double getCeditLeft() {
+		return ceditLeft;
+	}
+
+	public void setCeditLeft(double ceditLeft) {
+		this.ceditLeft = ceditLeft;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -53,7 +73,4 @@ public class LoginStatusDto {
 	public void setStatusMsg(String statusMsg) {
 		this.statusMsg = statusMsg;
 	}
-
-		
-	
 }

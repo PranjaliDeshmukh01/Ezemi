@@ -58,6 +58,8 @@ public class AccountController {
 				lsd.setEmail(user.getEmail());
 				lsd.setName(user.getFirstname());
 				lsd.setStatusMsg("SUCCESS");
+				lsd.setCardType(user.getCard().getCardType().getCardTypeId());
+				lsd.setCeditLeft(user.getCard().getCreditLeft());
 				return lsd;
 			}
 		}
