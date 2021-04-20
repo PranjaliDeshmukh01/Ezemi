@@ -18,4 +18,5 @@ public interface ProductRepository {
 	public void deleteAProduct(int productId);
 
 	List<Category> getAllCategories();
+	
 }

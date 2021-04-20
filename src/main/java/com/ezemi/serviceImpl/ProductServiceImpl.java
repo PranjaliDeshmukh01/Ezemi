@@ -32,4 +32,10 @@ public class ProductServiceImpl implements ProductService {
 		return productRepo.getAllCategories();
 	}
 
+	@Override
+	public boolean inStockToggle(int productId) {
+		return productRepo.inStockToggle(productId);
+	}
+
+
 }

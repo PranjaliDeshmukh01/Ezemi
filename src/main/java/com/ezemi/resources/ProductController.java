@@ -1,7 +1,9 @@
 package com.ezemi.resources;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,11 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ezemi.dto.ProductDto;
+import com.ezemi.dto.Status;
+import com.ezemi.dto.Status.StatusType;
 import com.ezemi.entity.Category;
 import com.ezemi.entity.Product;
+import com.ezemi.service.AdminService;
 import com.ezemi.service.ProductService;
 
 @RestController
@@ -25,6 +33,9 @@ public class ProductController {
 
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	AdminService adminService;
 	
 	@GetMapping(path="/allproducts")
 	public List<Product> getAllProducts(){ 
@@ -73,4 +84,50 @@ public class ProductController {
 	}
 
 	
+	@PostMapping(path = "/updateproductdetails")
+	public Status updateProductDetails(@ModelAttribute ProductDto productDto, @RequestParam("productId") int productId) {
+		
+		String imageUploadLocation = "d:/uploads/products/";
+		String fileName = productDto.getProductImgUrl().getOriginalFilename();
+		String targetFile = imageUploadLocation + fileName;
+		
+		try {
+		    FileCopyUtils.copy(productDto.getProductImgUrl().getInputStream(), new FileOutputStream(targetFile));
+		} 
+		catch (IOException e) {
+		    e.printStackTrace();
+		    Status status = new Status();
+		    status.setStatus(StatusType.FAILURE);
+		    status.setMessage(e.getMessage());
+		    return status;
+		}
+		
+		Product product = productService.getProductById(productId);
+	
+		product.setProductName(productDto.getProductName());
+		product.setPrice(productDto.getPrice());
+		product.setProductDetails(productDto.getProductDetails());
+		product.setProcessingFee(productDto.getProcessingFee());
+		
+		product.setInStock(true);
+		product.setDateAdded(LocalDate.now());
+		
+		product.setProductImgUrl(fileName);
+	
+		Category category =  adminService.getCategoryById(productDto.getCategoryId());
+		product.setCategory(category);
+		
+		adminService.addProduct(product);
+		
+		Status status = new Status();
+		status.setStatus(StatusType.SUCCESS);
+		status.setMessage("Product Updated!");
+		
+		return status;
+	}
+	
+	@GetMapping(path="/instocktoggle")
+	public boolean inStockToggle(@RequestParam int productId){
+		return productService.inStockToggle(productId);
+	}
 }

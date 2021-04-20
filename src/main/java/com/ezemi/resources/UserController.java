@@ -4,7 +4,6 @@ package com.ezemi.resources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +26,8 @@ public class UserController {
 	UserService userService;
 
 
-	@PostMapping("/activatecard")
+
+	@GetMapping("/activatecard")
 	public Status activateCard(@RequestParam("userId") int userId) {
 		userService.activateCard(userId);
 		Status status=new Status();
