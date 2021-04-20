@@ -12,6 +12,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.ezemi.dto.RoleType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tbl_User")
@@ -166,7 +167,7 @@ public class User {
 	public void setIsApproved(Boolean isApproved) {
 		this.isApproved = isApproved;
 	}
-
+	@JsonIgnore
 	public List<Order> getOrders() {
 		return orders;
 	}
@@ -174,7 +175,7 @@ public class User {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
-
+	@JsonIgnore
 	public List<Transaction> getTransactions() {
 		return transactions;
 	}

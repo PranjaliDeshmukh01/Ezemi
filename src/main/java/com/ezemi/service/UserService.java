@@ -23,5 +23,7 @@ public interface UserService {
 	public void payEmi(int userId, int orderId);
 	
 	public void activateCard(int userId);
+	
+	public User getUserById(int userId);
 
 }
