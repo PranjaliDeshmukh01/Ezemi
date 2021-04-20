@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="tbl_Transaction")
 public class Transaction {
@@ -41,7 +43,8 @@ public class Transaction {
 	public void setTransactionId(UUID transactionId) {
 		this.transactionId = transactionId;
 	}
-
+	
+	
 	public User getUser() {
 		return user;
 	}
