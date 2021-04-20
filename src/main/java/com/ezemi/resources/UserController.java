@@ -28,7 +28,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	@PostMapping("/activatecard")
+	@GetMapping("/activatecard")
 	public Status activateCard(@RequestParam("userId") int userId) {
 		userService.activateCard(userId);
 		Status status=new Status();
