@@ -73,7 +73,4 @@ public class LoginStatusDto {
 	public void setStatusMsg(String statusMsg) {
 		this.statusMsg = statusMsg;
 	}
-
-		
-	
 }
