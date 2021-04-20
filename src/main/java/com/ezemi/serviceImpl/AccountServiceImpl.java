@@ -133,7 +133,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public User isUserValid(String email, String password) {
 		User user = userRepo.getUserByEmail(email);
-		if (BCrypt.checkpw(password, user.getPassword())) {
+		if (user != null && BCrypt.checkpw(password, user.getPassword())) {
 			return user;
 		} else {
 			return null;
