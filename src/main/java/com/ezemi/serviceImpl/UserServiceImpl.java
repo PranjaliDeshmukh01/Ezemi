@@ -2,6 +2,7 @@ package com.ezemi.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezemi.entity.Address;
@@ -9,11 +10,14 @@ import com.ezemi.entity.BankDetails;
 import com.ezemi.entity.EmiCard;
 import com.ezemi.entity.Transaction;
 import com.ezemi.entity.User;
+import com.ezemi.repository.UserRepository;
 import com.ezemi.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+	@Autowired
+	UserRepository userRepo;
 	@Override
 	public List<Transaction> getTransactionsByUserId(int userId) {
 		// TODO Auto-generated method stub
@@ -56,7 +60,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void activateCard(int userId) {
-		
-		
+	
 	}
+	
 }
