@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -151,8 +152,7 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	@Transactional
 	public void addOrUpdateAddress(Address address, int userId) {
-		User user = getUserById(userId);
-		address.setUser(user);
+		address.setUser(getUserById(userId));
 		em.merge(address);
 	}
 

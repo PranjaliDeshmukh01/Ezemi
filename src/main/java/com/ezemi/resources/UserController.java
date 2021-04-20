@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,6 +45,15 @@ public class UserController {
 	@GetMapping(value="/getAddressByUserId")
 	public Address getAddressByUserId(@RequestParam("userId") int userId) {
 		return getUserById(userId).getAddress();
+	}
+	
+	@PutMapping(value="/updateAddress")
+	public Status updateAddress(@RequestParam("userId") int userId, @RequestBody Address address) {
+		userService.updateAddress(userId, address);
+		Status status=new Status();
+		status.setStatus(StatusType.SUCCESS);
+		status.setMessage("Address Updated !");
+		return status;
 	}
 
 }

@@ -50,8 +50,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public void updateAddress(int userId, Address address) {
-		// TODO Auto-generated method stub
-
+		userRepo.addOrUpdateAddress(address, userId);
 	}
 
 	
