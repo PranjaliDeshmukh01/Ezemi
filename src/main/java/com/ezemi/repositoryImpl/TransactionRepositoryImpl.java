@@ -2,10 +2,11 @@ package com.ezemi.repositoryImpl;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -47,6 +48,18 @@ public class TransactionRepositoryImpl implements TransactionRepository {
 		transaction.setTransactionMsg(msg);
 		transaction.setUser(em.find(User.class, userId));
 		em.merge(transaction);
+	}
+
+
+
+	@Override
+	public Transaction getTransactionById(UUID transactionId) {
+	 String jpql="select t from Transaction t where t.transactionId=:tId";
+	TypedQuery<Transaction> query=em.createQuery(jpql, Transaction.class);
+	query.setParameter("tId", transactionId);
+	
+	return query.getSingleResult();
+		
 	}
 	
 }

@@ -1,6 +1,7 @@
 package com.ezemi.serviceImpl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,8 +35,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<Transaction> getTransactionsByUserId(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return transactionRepo.getTransactionByUserId(userId);
 	}
 
 	
@@ -98,6 +99,14 @@ public class UserServiceImpl implements UserService {
 	public User getUserById(int userId) {
 		User user=userRepo.getUserById(userId);
 		return user;
+	}
+
+
+
+	@Override
+	public Transaction getTransactionById(UUID transactionId) {
+		
+		return transactionRepo.getTransactionById(transactionId);
 	}
 	
 }

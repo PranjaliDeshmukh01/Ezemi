@@ -106,4 +106,12 @@ public class AdminRepositoryImpl implements AdminRepository {
 		query.executeUpdate();
 		
 	}
+
+	@Override
+	@Transactional
+	public void updateCategoryDetails(Category category) {
+		Category ct = getCategoryById(category.getCategoryId());
+		ct.setCategoryName(category.getCategoryName());	
+		
+	}
 }

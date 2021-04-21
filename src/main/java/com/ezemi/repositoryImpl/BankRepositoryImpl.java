@@ -43,6 +43,8 @@ public class BankRepositoryImpl implements BankRepository {
 		String jpql = "select b from Bank b";
 		return em.createQuery(jpql,Bank.class).getResultList();
 	}
+
+
 	
 
 }

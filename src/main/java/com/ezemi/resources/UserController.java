@@ -2,6 +2,9 @@ package com.ezemi.resources;
 
 
 import java.util.List;
+import java.util.UUID;
+
+//github.com/ezemi/EzemiRest-Repo.git
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +20,8 @@ import com.ezemi.dto.Status;
 import com.ezemi.dto.Status.StatusType;
 import com.ezemi.entity.Address;
 import com.ezemi.entity.Order;
+import com.ezemi.entity.Transaction;
+//github.com/ezemi/EzemiRest-Repo.git
 import com.ezemi.entity.User;
 import com.ezemi.service.OrderService;
 import com.ezemi.service.UserService;
@@ -88,4 +93,19 @@ public class UserController {
 	public List<Order> getPaidOrdersByUserId(@RequestParam("userId") int userId){
 		return orderService.getFullyPaidOrders(userId);
 	}
+
+	@GetMapping(value="/transactionsbyuserid")
+	public List<Transaction> getTransactionByUserId(@RequestParam("userId") int userId) {
+		List<Transaction> trnc=null;
+			trnc=userService.getTransactionsByUserId(userId);
+		return trnc; 
+	}
+	
+	@GetMapping(value="/transactionbyid")
+	public Transaction getTransactionById(@RequestParam("transactionId") UUID transactionId) {
+		Transaction tr=null;
+		tr=userService.getTransactionById(transactionId);
+		return tr;
+	}
+
 }

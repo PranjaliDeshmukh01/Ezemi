@@ -39,4 +39,6 @@ public interface AdminRepository {
 	public void deleteACategory(int categoryId);
 	
 	
+	public void updateCategoryDetails(Category category);
+	
 }
