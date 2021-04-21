@@ -12,6 +12,7 @@ import com.ezemi.dto.Status.StatusType;
 import com.ezemi.entity.Bank;
 import com.ezemi.entity.CardType;
 import com.ezemi.entity.Category;
+import com.ezemi.entity.ContactUs;
 import com.ezemi.entity.Product;
 import com.ezemi.entity.User;
 import com.ezemi.repository.AdminRepository;
@@ -142,6 +143,14 @@ public class AdminServiceImpl implements AdminService {
 	public void updateCategoryDetails(Category category) {
 		adminRepo.updateCategoryDetails(category);
 		
+	}
+
+
+
+	
+	@Override
+	public void addCustomerQuery(ContactUs query) {
+		adminRepo.addCustomerQuery(query);
 	}
 
 

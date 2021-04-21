@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.ezemi.entity.Bank;
 import com.ezemi.entity.CardType;
 import com.ezemi.entity.Category;
+import com.ezemi.entity.ContactUs;
 import com.ezemi.entity.EmiCard;
 import com.ezemi.entity.Order;
 import com.ezemi.entity.User;
@@ -112,6 +113,13 @@ public class AdminRepositoryImpl implements AdminRepository {
 	public void updateCategoryDetails(Category category) {
 		Category ct = getCategoryById(category.getCategoryId());
 		ct.setCategoryName(category.getCategoryName());	
+		
+	}
+
+	@Override
+	@Transactional
+	public void addCustomerQuery(ContactUs query) {
+		em.merge(query);
 		
 	}
 }
