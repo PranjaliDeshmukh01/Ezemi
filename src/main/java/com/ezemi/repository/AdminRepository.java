@@ -5,6 +5,7 @@ import java.util.List;
 import com.ezemi.entity.Bank;
 import com.ezemi.entity.CardType;
 import com.ezemi.entity.Category;
+import com.ezemi.entity.ContactUs;
 import com.ezemi.entity.User;
 
 public interface AdminRepository {
@@ -40,5 +41,7 @@ public interface AdminRepository {
 	
 	
 	public void updateCategoryDetails(Category category);
+	
+	void addCustomerQuery(ContactUs query);
 	
 }

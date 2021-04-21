@@ -25,6 +25,7 @@ import com.ezemi.dto.Status.StatusType;
 import com.ezemi.entity.Bank;
 import com.ezemi.entity.CardType;
 import com.ezemi.entity.Category;
+import com.ezemi.entity.ContactUs;
 import com.ezemi.entity.Product;
 import com.ezemi.entity.User;
 import com.ezemi.service.AdminService;
@@ -193,6 +194,15 @@ public class AdminController {
 		status.setMessage("User Activated!");
 		return status;
 		
+	}
+	
+	@PostMapping(path="/addcustomerquery")
+	public Status addCustomerQuery(@RequestBody ContactUs query){
+		adminService.addCustomerQuery(query);
+		Status status = new Status();
+		status.setStatus(StatusType.SUCCESS);
+		status.setMessage("Your Query is Sent To Admin !");
+		return status;
 	}
 
 }
