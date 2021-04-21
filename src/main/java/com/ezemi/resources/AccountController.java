@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ezemi.dto.ChangePassDto;
 import com.ezemi.dto.LoginDto;
 import com.ezemi.dto.LoginStatusDto;
 import com.ezemi.dto.RegAdminDto;
@@ -22,6 +24,7 @@ import com.ezemi.entity.User;
 import com.ezemi.helper.RandomPinGenerator;
 import com.ezemi.service.AccountService;
 import com.ezemi.service.EmailService;
+import com.ezemi.service.UserService;
 
 @RestController
 @CrossOrigin
@@ -87,5 +90,25 @@ public class AccountController {
 		String text = "Your otp for EzEmi registeration is "+ otp+". \n Do not share this otp. Ignore if not requested by you.";
 		emailService.sendEmail(emailId, text, subject);
 		return otp;
+	}
+	
+
+	@GetMapping("/getotptoChangePass")
+	public String getOtpToChangePasswoed(@RequestParam("emailId") String emailId) {
+		if(accountService.userExists(emailId)) {
+			String otp = RandomPinGenerator.generate4digitPin();
+			String subject = "Change password request";
+			String text = "Your otp to reset password "+ otp+". \n Do not share this otp. Ignore if not requested by you.";
+			emailService.sendEmail(emailId, text, subject);
+			return otp;
+		}
+		return "FAILED";
+	}
+	
+	
+	
+	@PutMapping("/changepassword")
+	public Status changePassword(@RequestBody ChangePassDto cpd) {
+		return accountService.changePassword(cpd.getEmail(), cpd.getNewPassword());
 	}
 }

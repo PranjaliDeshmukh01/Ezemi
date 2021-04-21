@@ -148,8 +148,28 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public boolean changePassword(int userId, String newPassword) {
-		// TODO Auto-generated method stub
-		return false;
+	public Status changePassword(String email, String newPassword) {
+		User user = userRepo.getUserByEmail(email);
+		Status status = new Status();
+		if(user != null) {
+			String encryptedpass = encryptPassword(newPassword);
+			user.setPassword(encryptedpass);
+			userRepo.registerorUpdateUser(user);
+			status.setStatus(StatusType.SUCCESS);
+			status.setMessage("Password changed");
+			String text ="Your ezEmi password has been changed successfully. if not done by you, Contact eezzemi@gmail.com immediately..";
+			String subject="Password changed";
+			emailService.sendEmail(email,text, subject);
+		} else {
+			status.setStatus(StatusType.FAILURE);
+			status.setMessage("User not found!");
+		}
+		
+		return status;
+	}
+	
+	@Override
+	public boolean userExists(String email) {
+		return userRepo.userExists(email);
 	}
 }

@@ -13,7 +13,9 @@ public interface AccountService {
 
 	public User isUserValid(String email, String password);
 
-	public boolean changePassword(int userId, String newPassword);
+	public Status changePassword(String email, String newPassword);
 
 	public List<Bank> getAllBanks();
+	
+	public boolean userExists(String email);
 }
