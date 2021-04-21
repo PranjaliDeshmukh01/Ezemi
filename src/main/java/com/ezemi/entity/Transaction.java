@@ -44,7 +44,7 @@ public class Transaction {
 		this.transactionId = transactionId;
 	}
 	
-	
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}

@@ -1,6 +1,7 @@
 package com.ezemi.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.ezemi.entity.Address;
 import com.ezemi.entity.BankDetails;
@@ -25,5 +26,7 @@ public interface UserService {
 	public void activateCard(int userId);
 	
 	public User getUserById(int userId);
+	
+	public Transaction getTransactionById(UUID transactionId);
 
 }

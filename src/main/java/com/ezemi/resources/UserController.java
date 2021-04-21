@@ -1,6 +1,9 @@
 package com.ezemi.resources;
 
 
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ezemi.dto.Status;
 import com.ezemi.dto.Status.StatusType;
 import com.ezemi.entity.Address;
+import com.ezemi.entity.Transaction;
 import com.ezemi.entity.User;
 import com.ezemi.service.UserService;
 
@@ -54,6 +58,19 @@ public class UserController {
 		status.setStatus(StatusType.SUCCESS);
 		status.setMessage("Address Updated !");
 		return status;
+	}
+	@GetMapping(value="/transactionsbyuserid")
+	public List<Transaction> getTransactionByUserId(@RequestParam("userId") int userId) {
+		List<Transaction> trnc=null;
+			trnc=userService.getTransactionsByUserId(userId);
+		return trnc; 
+	}
+	
+	@GetMapping(value="/transactionbyid")
+	public Transaction getTransactionById(@RequestParam("transactionId") UUID transactionId) {
+		Transaction tr=null;
+		tr=userService.getTransactionById(transactionId);
+		return tr;
 	}
 
 }
