@@ -14,4 +14,6 @@ public interface BankRepository {
 	public List<User> getUsersByBankId(int bankId);
 
 	List<Bank> getAllBanks();
+	
+	
 }

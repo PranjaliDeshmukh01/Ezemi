@@ -40,6 +40,7 @@ public interface AdminService {
 	
 	void deleteACategory(int categoryId);
 	
+	void updateCategoryDetails(Category category);
 	
 	
 }
