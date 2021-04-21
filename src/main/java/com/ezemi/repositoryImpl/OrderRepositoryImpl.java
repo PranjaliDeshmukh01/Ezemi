@@ -22,7 +22,6 @@ public class OrderRepositoryImpl implements OrderRepository {
 	@Override
 	@Transactional
 	public void addAnOrder(Order order) {
-
 		em.merge(order);
 
 	}
@@ -36,6 +35,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 		em.merge(order);
 	}
 
+	
 	@Override
 	public List<Order> getOrdersByProductId(int product_id) {
 

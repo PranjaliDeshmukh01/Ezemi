@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.ezemi.entity.EmiCard;
 import com.ezemi.entity.Transaction;
 import com.ezemi.entity.User;
 import com.ezemi.repository.TransactionRepository;
@@ -23,6 +25,15 @@ public class TransactionRepositoryImpl implements TransactionRepository {
 	public List<Transaction> getTransactionByUserId(int userId) {
 		User user = em.find(User.class, userId);
 		return user.getTransactions();
+	}
+	
+	@Override
+	@Transactional
+	public void reduceCreditBy(int userId, double amount) {
+		EmiCard card = em.find(User.class, userId).getCard();
+
+		card.setCreditLeft(card.getCreditLeft() - amount);
+		em.merge(card);
 	}
 
 

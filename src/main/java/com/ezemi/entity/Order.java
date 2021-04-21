@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="tbl_Order")
 public class Order {
@@ -67,6 +69,7 @@ public class Order {
 		this.orderId = orderId;
 	}
 
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}

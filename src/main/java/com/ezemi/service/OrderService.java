@@ -7,7 +7,7 @@ import com.ezemi.entity.Product;
 
 public interface OrderService {
 	
-	public void makeAnOrder(int userId, int emiTypeId, Product product);
+	public void makeAnOrder(int userId, int emiMonths, int productId, boolean autodebit);
 
 	public List<Order> getOrdersByUserId(int userId);
 

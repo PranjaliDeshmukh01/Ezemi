@@ -14,7 +14,7 @@ public class LoginStatusDto {
 
 	int cardType;
 	
-	double ceditLeft;
+	double creditLeft;
 	
 	boolean isCardActivated;
 	
@@ -36,12 +36,12 @@ public class LoginStatusDto {
 		this.cardType = cardType;
 	}
 
-	public double getCeditLeft() {
-		return ceditLeft;
+	public double getCreditLeft() {
+		return creditLeft;
 	}
 
-	public void setCeditLeft(double ceditLeft) {
-		this.ceditLeft = ceditLeft;
+	public void setCreditLeft(double ceditLeft) {
+		this.creditLeft = ceditLeft;
 	}
 
 	public String getEmail() {
