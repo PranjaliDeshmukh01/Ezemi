@@ -3,7 +3,6 @@ package com.ezemi.service;
 import java.util.List;
 
 import com.ezemi.entity.Order;
-import com.ezemi.entity.Product;
 
 public interface OrderService {
 	
@@ -14,4 +13,8 @@ public interface OrderService {
 	public List<Order> getNotFullyPaidOrders(int userId);
 
 	public List<Order> getFullyPaidOrders(int userId);
+	
+	public Order getOrderById(int orderId);
+	
+	public void payEmi(int orderId);
 }

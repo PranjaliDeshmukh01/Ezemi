@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Repository;
 
 import com.ezemi.dto.RoleType;
 import com.ezemi.entity.Address;
-import com.ezemi.entity.Bank;
 import com.ezemi.entity.BankDetails;
 import com.ezemi.entity.EmiCard;
 import com.ezemi.entity.User;
@@ -170,5 +168,6 @@ public class UserRepositoryImpl implements UserRepository {
 		return u!=null;
 	}
 	
+
 	
 }

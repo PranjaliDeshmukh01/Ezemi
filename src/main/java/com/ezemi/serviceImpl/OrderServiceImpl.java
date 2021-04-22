@@ -4,12 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ezemi.entity.EmiCard;
 import com.ezemi.entity.Order;
 import com.ezemi.entity.Product;
 import com.ezemi.entity.User;
@@ -69,7 +66,7 @@ public class OrderServiceImpl implements OrderService {
 		String text = user.getFirstname()+", your order for "+prod.getProductName()+" is Confiremed!  Thank you.";
 		String subject = "Order confirmation";
 		emailSerive.sendEmail(user.getEmail(), text, subject);
-		orderRepo.addAnOrder(order);
+		orderRepo.addOrUpdateOrder(order);
 	}
 
 	
@@ -95,4 +92,39 @@ public class OrderServiceImpl implements OrderService {
 				.collect(Collectors.toList());
 	}
 
+	@Override
+	public Order getOrderById(int orderId) {
+		return orderRepo.getOrderById(orderId);
+	}
+	
+	@Override
+	public void payEmi(int orderId) {
+
+		Order order = getOrderById(orderId);
+		if(order.getAmountDue() > 0) {
+		if((order.getEmiMonths() - 1) == order.getInstallments()) {
+			order.setAmountDue(0);
+		} else {
+			order.setAmountDue(order.getAmountDue() - order.getEmiAmount());
+		}
+
+		order.setInstallments(order.getInstallments() + 1);
+
+		
+		transactionRepo.increaseCreditByUserId(order.getUser().getUserId(), order.getEmiAmount());
+		
+		String trMsg = "Emi paid for orderId "+orderId;
+		
+		transactionRepo.addTransaction(order.getUser().getUserId(), order.getEmiAmount(), trMsg);
+		
+		orderRepo.addOrUpdateOrder(order);
+		
+		String text="Emi amount "+order.getEmiAmount()+" paid for orderId: "+orderId;
+		
+		String subject="Payment successful";
+		
+		emailSerive.sendEmail(order.getUser().getEmail(), text, subject);
+		}
+		
+	}
 }

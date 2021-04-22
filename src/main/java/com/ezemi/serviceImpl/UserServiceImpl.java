@@ -62,15 +62,6 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	
-	
-	@Override
-	public void payEmi(int userId, int orderId) {
-		// TODO Auto-generated method stub
-
-	}
-
-
 
 	@Override
 	public void activateCard(int userId) {

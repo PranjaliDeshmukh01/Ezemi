@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.ezemi.entity.EmiCard;
 import com.ezemi.entity.Order;
 import com.ezemi.entity.User;
 import com.ezemi.repository.OrderRepository;
@@ -21,9 +22,13 @@ public class OrderRepositoryImpl implements OrderRepository {
 
 	@Override
 	@Transactional
-	public void addAnOrder(Order order) {
+	public void addOrUpdateOrder(Order order) {
 		em.merge(order);
-
+	}
+	
+	@Override
+	public Order getOrderById(int orderId) {
+		return em.find(Order.class, orderId);
 	}
 
 	@Override
@@ -32,6 +37,13 @@ public class OrderRepositoryImpl implements OrderRepository {
 		Order order = em.find(Order.class, orderId);
 		order.setAmountDue(order.getAmountDue() - order.getEmiAmount());
 		order.setInstallments(order.getInstallments() + 1);
+		
+		EmiCard card = order.getUser().getCard();
+		
+		card.setCredit(card.getCreditLeft() +order.getEmiAmount());
+		
+		
+		em.merge(card);
 		em.merge(order);
 	}
 

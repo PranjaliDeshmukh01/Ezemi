@@ -14,4 +14,6 @@ public interface TransactionRepository {
 	public void reduceCreditBy(int userId, double amount);
 
 	public Transaction getTransactionById(UUID transactionId);
+	
+	public void increaseCreditByUserId(int userId, double amount);
 }

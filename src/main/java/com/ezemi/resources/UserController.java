@@ -107,5 +107,14 @@ public class UserController {
 		tr=userService.getTransactionById(transactionId);
 		return tr;
 	}
+	
+	@GetMapping(value="/payemi")
+	public Status payEmi(@RequestParam("orderId") int orderId) {
+		orderService.payEmi(orderId);
+		Status status = new Status();
+		status.setMessage("Emi paid");
+		status.setStatus(StatusType.SUCCESS);
+		return status;
+	}
 
 }

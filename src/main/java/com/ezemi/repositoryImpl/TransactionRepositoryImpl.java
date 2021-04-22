@@ -32,8 +32,15 @@ public class TransactionRepositoryImpl implements TransactionRepository {
 	@Transactional
 	public void reduceCreditBy(int userId, double amount) {
 		EmiCard card = em.find(User.class, userId).getCard();
-
 		card.setCreditLeft(card.getCreditLeft() - amount);
+		em.merge(card);
+	}
+	
+	@Override
+	@Transactional
+	public void increaseCreditByUserId(int userId, double amount) {
+		EmiCard card = em.find(User.class, userId).getCard();
+		card.setCreditLeft(card.getCreditLeft() + amount);
 		em.merge(card);
 	}
 

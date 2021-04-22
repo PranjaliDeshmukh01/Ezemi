@@ -6,7 +6,9 @@ import com.ezemi.entity.Order;
 
 public interface OrderRepository {
 
-	public void addAnOrder(Order order);
+	public void addOrUpdateOrder(Order order);
+	
+	public Order getOrderById(int orderId);
 	
 	public void updateInstallment(int orderId);
 	
