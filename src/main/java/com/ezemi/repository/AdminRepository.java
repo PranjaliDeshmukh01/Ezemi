@@ -44,4 +44,8 @@ public interface AdminRepository {
 	
 	void addCustomerQuery(ContactUs query);
 	
+	public List<ContactUs> getAllQueries();
+	
+	public ContactUs getQueryById(int queryId);
+	
 }

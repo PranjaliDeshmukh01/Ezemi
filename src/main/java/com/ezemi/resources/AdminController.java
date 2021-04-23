@@ -204,5 +204,24 @@ public class AdminController {
 		status.setMessage("Your Query is Sent To Admin !");
 		return status;
 	}
-
+	
+	@GetMapping(path="/getallqueries")
+	public List<ContactUs> getAllQueries(){
+		List<ContactUs> queries=null;
+		queries=adminService.getAllQueries();
+		return queries;
+	}
+	@GetMapping(path="/getquerybyid")
+	public ContactUs getQueryById(@RequestParam("queryId") int queryId) {
+		ContactUs c=null;
+		c=adminService.getQueryById(queryId);
+		return c;
+	}
+	
+	@PostMapping(path="/sendreply")
+	public Status sendReply(@RequestBody ContactUs reply) {
+		Status st=null;
+		st=adminService.sendReply(reply);
+		return st;
+	}
 }

@@ -155,4 +155,42 @@ public class AdminServiceImpl implements AdminService {
 
 
 
+
+	@Override
+	public List<ContactUs> getAllQueries() {
+		return adminRepo.getAllQueries();
+	}
+
+
+
+
+	@Override
+	public ContactUs getQueryById(int queryId) {
+		
+		return adminRepo.getQueryById(queryId);
+	}
+
+
+
+
+	@Override
+	public Status sendReply(ContactUs reply) {
+		ContactUs userContact=adminRepo.getQueryById(reply.getQueryId());
+		userContact.setReplied(true);
+		adminRepo.addCustomerQuery(userContact);
+		
+		
+		String subject = "Reply from Ezemi";
+		String text ="Query: "+ userContact.getQuery()+"Reply: "+reply.getQuery();
+		emailServie.sendEmail(reply.getEmail(), text, subject);
+		
+		Status status = new Status();
+		status.setStatus(StatusType.SUCCESS);
+		status.setMessage("Message Sent!");
+		return status;
+		
+	}
+
+
+
 }

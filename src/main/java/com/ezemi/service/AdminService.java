@@ -45,4 +45,10 @@ public interface AdminService {
 	
 	void addCustomerQuery(ContactUs query);
 	
+	List<ContactUs> getAllQueries();
+	
+	public ContactUs getQueryById(int queryId);
+	
+	public Status sendReply(ContactUs reply);
+	
 }

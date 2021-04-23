@@ -122,4 +122,18 @@ public class AdminRepositoryImpl implements AdminRepository {
 		em.merge(query);
 		
 	}
+
+	@Override
+	public List<ContactUs> getAllQueries() {
+		String jpql="select c from ContactUs c ";
+		TypedQuery<ContactUs> query=em.createQuery(jpql, ContactUs.class);
+		
+		return query.getResultList();
+	}
+
+	@Override
+	public ContactUs getQueryById(int queryId) {
+		
+		return em.find(ContactUs.class, queryId);
+	}
 }

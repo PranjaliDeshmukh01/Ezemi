@@ -20,6 +20,17 @@ public class ContactUs {
 	
 	String query;
 	
+	boolean replied;
+	
+
+
+	public boolean getReplied() {
+		return replied;
+	}
+
+	public void setReplied(boolean replied) {
+		this.replied = replied;
+	}
 
 	public int getQueryId() {
 		return queryId;
