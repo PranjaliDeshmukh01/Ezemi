@@ -3,6 +3,7 @@ package com.ezemi.repository;
 import java.util.List;
 
 import com.ezemi.entity.Order;
+import com.ezemi.entity.User;
 
 public interface OrderRepository {
 
@@ -17,5 +18,9 @@ public interface OrderRepository {
 	public void shipOrder(int orderId);
 	
 	public List<Order> getOrdersByUserId(int userId);
+	
+	public List<Order> getAllNonShippedOrders();
+	
+	public User getUserByOrderId(int orderId);
 	
 }

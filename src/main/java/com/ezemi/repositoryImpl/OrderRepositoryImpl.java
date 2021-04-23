@@ -72,4 +72,17 @@ public class OrderRepositoryImpl implements OrderRepository {
 		return user.getOrders();
 	}
 
+	@Override
+	public List<Order> getAllNonShippedOrders() {
+		String jpql = "select o from Order o where o.isShipped=0";
+		return em.createQuery( jpql ,Order.class).getResultList();
+	}
+
+	@Override
+	public User getUserByOrderId(int orderId) {
+		Order order = getOrderById(orderId);
+		User user = order.getUser();
+		return user;
+	}
+
 }
