@@ -263,6 +263,5 @@ public class AdminController {
 		status.setStatus(StatusType.SUCCESS);
 		adminService.deleteAUser(dto.getEmail(), dto.getMsg());
 		return status;
-	}
-	
+	}	
 }
