@@ -26,9 +26,11 @@ import com.ezemi.entity.Bank;
 import com.ezemi.entity.CardType;
 import com.ezemi.entity.Category;
 import com.ezemi.entity.ContactUs;
+import com.ezemi.entity.Order;
 import com.ezemi.entity.Product;
 import com.ezemi.entity.User;
 import com.ezemi.service.AdminService;
+import com.ezemi.service.OrderService;
 
 @RestController
 @CrossOrigin
@@ -36,6 +38,9 @@ public class AdminController {
 
 	@Autowired
 	AdminService adminService;
+	
+	@Autowired
+	OrderService orderService;
 
 	@PostMapping(path = "/addcategory")
 	public Status addOrUpdatecategory(@RequestBody Category ct) {
@@ -204,6 +209,7 @@ public class AdminController {
 		status.setMessage("Your Query is Sent To Admin !");
 		return status;
 	}
+
 	
 	@GetMapping(path="/getallqueries")
 	public List<ContactUs> getAllQueries(){
@@ -223,5 +229,26 @@ public class AdminController {
 		Status st=null;
 		st=adminService.sendReply(reply);
 		return st;
+	}
+
+	@GetMapping(path="getallNonShippedorders")
+	public List<Order> getAllNonShippedOrders(){
+		return orderService.getAllOrders();
+	}
+	
+	
+	@GetMapping(path= "getuserbyorderid")
+	public User getUserNameByOrderId(@RequestParam int orderId) {
+		return orderService.getUserByOrderId(orderId);
+	}
+	
+	@GetMapping(path="/shiporder")
+	public Status shipOrder(@RequestParam int orderId) {
+		 orderService.shipOrder(orderId);
+		 Status status = new Status();
+		 status.setStatus(StatusType.SUCCESS);
+	   	 status.setMessage("Order is shipped !");
+		 return status;
+		
 	}
 }

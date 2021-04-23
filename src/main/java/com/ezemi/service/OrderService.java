@@ -3,6 +3,7 @@ package com.ezemi.service;
 import java.util.List;
 
 import com.ezemi.entity.Order;
+import com.ezemi.entity.User;
 
 public interface OrderService {
 	
@@ -17,4 +18,10 @@ public interface OrderService {
 	public Order getOrderById(int orderId);
 	
 	public void payEmi(int orderId);
+	
+	public List<Order> getAllOrders();
+	
+	public void shipOrder(int orderId);
+	
+	public User getUserByOrderId(int orderId);
 }

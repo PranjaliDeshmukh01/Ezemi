@@ -127,4 +127,31 @@ public class OrderServiceImpl implements OrderService {
 		}
 		
 	}
+
+
+
+	@Override
+	public List<Order> getAllOrders() {
+		return orderRepo.getAllNonShippedOrders();
+	}
+
+
+
+	@Override
+	public void shipOrder(int orderId) {
+		
+		Order order = getOrderById(orderId);
+		String text = "Your Order for "+ order.getProduct().getProductName()+ " product is Shipped. You will receive it soon! \nThank You So Much for Shopping. \nTake Care !" ;
+	    String subject = "Order "+ order.getOrderId()+" is Shipped";
+	    emailSerive.sendEmail(order.getUser().getEmail(), text , subject);
+		orderRepo.shipOrder(orderId);
+		
+	}
+
+
+
+	@Override
+	public User getUserByOrderId(int orderId) {
+		return orderRepo.getUserByOrderId(orderId);
+	}
 }
