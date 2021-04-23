@@ -11,8 +11,6 @@ public interface OrderRepository {
 	
 	public Order getOrderById(int orderId);
 	
-	public void updateInstallment(int orderId);
-	
 	public List<Order> getOrdersByProductId(int productId);
 	
 	public void shipOrder(int orderId);
