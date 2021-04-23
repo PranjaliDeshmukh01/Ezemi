@@ -186,7 +186,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		
 		String subject = "Reply from Ezemi";
-		String text ="Query: "+ userContact.getQuery()+"Reply: "+reply.getQuery();
+		String text ="Query: "+ userContact.getQuery()+"\nReply: "+reply.getQuery() + "\nThank You !";
 		emailServie.sendEmail(reply.getEmail(), text, subject);
 		
 		Status status = new Status();
