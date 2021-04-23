@@ -42,5 +42,7 @@ public interface UserRepository {
 	public EmiCard getCardByUserId(int userId);
 
 	public Boolean userExists(String email);
+	
+	public void deleteAUser(String email);
 
 }

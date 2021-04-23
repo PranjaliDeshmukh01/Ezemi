@@ -85,11 +85,14 @@ public class AccountController {
 	
 	@GetMapping("/getotp")
 	public String getOtp(@RequestParam("emailId") String emailId) {
+		if(!accountService.userExists(emailId)) {
 		String otp = RandomPinGenerator.generate4digitPin();
 		String subject = "Otp Verification";
 		String text = "Your otp for EzEmi registeration is "+ otp+". \n Do not share this otp. Ignore if not requested by you.";
 		emailService.sendEmail(emailId, text, subject);
 		return otp;
+		}
+		return "FAILED";
 	}
 	
 

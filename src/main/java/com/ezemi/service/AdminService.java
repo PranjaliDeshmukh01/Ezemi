@@ -33,7 +33,7 @@ public interface AdminService {
 	
 	public Status addAdmin(String name,String email, String password);
 	
-
+	public void deleteAUser(String email, String msg);
 	
 	List<Bank> getallBanks();
 	

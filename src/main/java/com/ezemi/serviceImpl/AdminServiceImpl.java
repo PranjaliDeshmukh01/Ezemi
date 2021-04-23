@@ -133,16 +133,21 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void deleteACategory(int categoryId) {
 		adminRepo.deleteACategory(categoryId);
-		
 	}
-
+	
+	@Override
+	public void deleteAUser(String email, String msg) {
+		String subject = "Denial of card Application";
+		String text = msg;
+		emailServie.sendEmail(email, text, subject);
+		userRepo.deleteAUser(email);
+	}
 
 
 
 	@Override
 	public void updateCategoryDetails(Category category) {
 		adminRepo.updateCategoryDetails(category);
-		
 	}
 
 

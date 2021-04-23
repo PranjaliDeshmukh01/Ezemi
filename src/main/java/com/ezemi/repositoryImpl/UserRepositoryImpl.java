@@ -168,6 +168,11 @@ public class UserRepositoryImpl implements UserRepository {
 		return u!=null;
 	}
 	
-
+	@Override
+	@Transactional
+	public void deleteAUser(String email) {
+		em.remove(getUserByEmail(email));
+	}
+				
 	
 }

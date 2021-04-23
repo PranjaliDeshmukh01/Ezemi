@@ -11,13 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ezemi.dto.DenyApplicationDto;
 import com.ezemi.dto.ProductDto;
 import com.ezemi.dto.RegAdminDto;
 import com.ezemi.dto.Status;
@@ -30,6 +33,7 @@ import com.ezemi.entity.Order;
 import com.ezemi.entity.Product;
 import com.ezemi.entity.User;
 import com.ezemi.service.AdminService;
+import com.ezemi.service.EmailService;
 import com.ezemi.service.OrderService;
 
 @RestController
@@ -251,4 +255,14 @@ public class AdminController {
 		 return status;
 		
 	}
+	
+	@PutMapping(path="/denyUser")
+	public Status deleteUserByEmail(@RequestBody DenyApplicationDto dto) {
+		Status status=new Status();
+		status.setMessage("User deleted");
+		status.setStatus(StatusType.SUCCESS);
+		adminService.deleteAUser(dto.getEmail(), dto.getMsg());
+		return status;
+	}
+	
 }
