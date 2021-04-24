@@ -28,8 +28,16 @@ public class AdminRepositoryImpl implements AdminRepository {
 
 	@Override
 	@Transactional
-	public void addOrUpdateBank(Bank bank) {	
-		em.merge(bank);		
+	public void addOrUpdateBank(Bank bank) {
+		bank.setBankName(bank.getBankName().toUpperCase());
+		String jpql ="select b from Bank b where b.bankName=:bName";
+		TypedQuery<Bank> query = em.createQuery(jpql,Bank.class);
+		query.setParameter("bName", bank.getBankName());
+		try {
+		Bank b1 = query.getSingleResult();
+		}catch(Exception e) {
+			em.merge(bank);
+		}
 	}
 
 	@Override
