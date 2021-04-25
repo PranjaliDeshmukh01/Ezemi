@@ -60,23 +60,7 @@ public class AdminController {
 
 	@PostMapping(path = "/addproduct")
 	public Status addOrUpdateProduct(@ModelAttribute ProductDto productDto) {
-
-		String imageUploadLocation = "d:/uploads/products/";
-		String fileName = productDto.getProductName()+ productDto.getProductImgUrl().getOriginalFilename();
-		String targetFile = imageUploadLocation +fileName;
-
-		try {
-			FileCopyUtils.copy(productDto.getProductImgUrl().getInputStream(), new FileOutputStream(targetFile));
-		} catch (IOException e) {
-			e.printStackTrace();
-			Status status = new Status();
-			status.setStatus(StatusType.FAILURE);
-			status.setMessage(e.getMessage());
-			return status;
-		}
-
 		Product product = new Product();
-
 		product.setProductName(productDto.getProductName());
 		product.setPrice(productDto.getPrice());
 		product.setProductDetails(productDto.getProductDetails());
@@ -84,11 +68,27 @@ public class AdminController {
 
 		product.setInStock(true);
 		product.setDateAdded(LocalDate.now());
-
-		product.setProductImgUrl(fileName);
-
 		Category category = adminService.getCategoryById(productDto.getCategoryId());
 		product.setCategory(category);
+		
+		try {
+			String imageUploadLocation = "d:/uploads/products/";
+			String fileName = productDto.getProductName()+ productDto.getProductImgUrl().getOriginalFilename();
+			String targetFile = imageUploadLocation +fileName;
+			FileCopyUtils.copy(productDto.getProductImgUrl().getInputStream(), new FileOutputStream(targetFile));
+			product.setProductImgUrl(fileName);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			Status status = new Status();
+			status.setStatus(StatusType.FAILURE);
+			status.setMessage(e.getMessage());
+			return status;
+		} finally {
+			adminService.addProduct(product);
+		}
+		
+		
 
 		adminService.addProduct(product);
 

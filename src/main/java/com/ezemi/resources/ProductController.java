@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
@@ -86,37 +85,38 @@ public class ProductController {
 	
 	@PostMapping(path = "/updateproductdetails")
 	public Status updateProductDetails(@ModelAttribute ProductDto productDto, @RequestParam("productId") int productId) {
-		
-		String imageUploadLocation = "d:/uploads/products/";
-		String fileName = productDto.getProductName() + productDto.getProductImgUrl().getOriginalFilename();
-		String targetFile = imageUploadLocation + fileName;
-		
+	
+	Product product = productService.getProductById(productId);
+
+	product.setProductName(productDto.getProductName());
+	product.setPrice(productDto.getPrice());
+	product.setProductDetails(productDto.getProductDetails());
+	product.setProcessingFee(productDto.getProcessingFee());
+	
+	product.setInStock(true);
+	product.setDateAdded(LocalDate.now());
+	
+	
+
+	Category category =  adminService.getCategoryById(productDto.getCategoryId());
+	product.setCategory(category);
+	
 		try {
+
+			String imageUploadLocation = "d:/uploads/products/";
+			String fileName = productDto.getProductName() + productDto.getProductImgUrl().getOriginalFilename();
+			String targetFile = imageUploadLocation + fileName;
 		    FileCopyUtils.copy(productDto.getProductImgUrl().getInputStream(), new FileOutputStream(targetFile));
+		    product.setProductImgUrl(fileName);
 		} 
 		catch (IOException e) {
+			adminService.addProduct(product);
 		    e.printStackTrace();
 		    Status status = new Status();
 		    status.setStatus(StatusType.FAILURE);
 		    status.setMessage(e.getMessage());
 		    return status;
 		}
-		
-		Product product = productService.getProductById(productId);
-	
-		product.setProductName(productDto.getProductName());
-		product.setPrice(productDto.getPrice());
-		product.setProductDetails(productDto.getProductDetails());
-		product.setProcessingFee(productDto.getProcessingFee());
-		
-		product.setInStock(true);
-		product.setDateAdded(LocalDate.now());
-		
-		product.setProductImgUrl(fileName);
-	
-		Category category =  adminService.getCategoryById(productDto.getCategoryId());
-		product.setCategory(category);
-		
 		adminService.addProduct(product);
 		
 		Status status = new Status();
