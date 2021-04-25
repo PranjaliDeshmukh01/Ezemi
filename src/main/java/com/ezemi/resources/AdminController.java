@@ -191,8 +191,36 @@ public class AdminController {
 	}
 
 	@GetMapping(path = "/getapprovedusers")
-	public List<User> getApprovedUsers() {
-		return adminService.getApprovedCustomers();
+	public List<User> getApprovedUsers(HttpServletRequest request) {
+		List<User> userList = adminService.getApprovedCustomers();
+		// reading the project's deployed folder location
+		String projPath = request.getServletContext().getRealPath("/");
+		String tempDownloadPath = projPath + "/downloads/";
+		// creating a folder within the project where we will place the profile pic of
+		// the customer getting fetched
+		File f = new File(tempDownloadPath);
+		if (!f.exists())
+			f.mkdir();
+
+		for (User user : userList) {
+			String adhartargetFile = tempDownloadPath + user.getAdharCard();
+			String pantargetFile = tempDownloadPath + user.getPanCard();
+
+			// the original location where the uploaded images are present
+			String uploadedImagesPath = "D:/uploads/products/";
+			String adharsourceFile = uploadedImagesPath + user.getAdharCard();
+			String pansourceFile = uploadedImagesPath + user.getPanCard();
+
+			try {
+				FileCopyUtils.copy(new File(adharsourceFile), new File(adhartargetFile));
+				FileCopyUtils.copy(new File(pansourceFile), new File(pantargetFile));
+
+			} catch (IOException e) {
+				e.printStackTrace();
+				// maybe for this customer there is no profile pic
+			}
+		}
+		return userList;
 	}
 
 	@PostMapping(path="/updatecategroydetails")
