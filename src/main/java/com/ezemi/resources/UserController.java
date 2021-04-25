@@ -23,6 +23,8 @@ import com.ezemi.entity.Order;
 import com.ezemi.entity.Transaction;
 //github.com/ezemi/EzemiRest-Repo.git
 import com.ezemi.entity.User;
+import com.ezemi.helper.RandomPinGenerator;
+import com.ezemi.service.EmailService;
 import com.ezemi.service.OrderService;
 import com.ezemi.service.UserService;
 
@@ -38,6 +40,9 @@ public class UserController {
 	@Autowired
 	OrderService orderService;
 
+
+	@Autowired
+	EmailService emailService;
 
 
 	@GetMapping("/activatecard")
@@ -116,5 +121,15 @@ public class UserController {
 		status.setStatus(StatusType.SUCCESS);
 		return status;
 	}
+	
+	@GetMapping("/getotpforpayment")
+	public String getOtp(@RequestParam("emailId") String emailId) {
+		String otp = RandomPinGenerator.generate4digitPin();
+		String subject = "payment Otp Verification";
+		String text = "Your otp for payment is "+ otp+". \n Do not share this otp. Ignore if not requested by you.";
+		emailService.sendEmail(emailId, text, subject);
+		return otp;
+	}
+	
 
 }

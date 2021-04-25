@@ -62,8 +62,8 @@ public class AdminController {
 	public Status addOrUpdateProduct(@ModelAttribute ProductDto productDto) {
 
 		String imageUploadLocation = "d:/uploads/products/";
-		String fileName = productDto.getProductImgUrl().getOriginalFilename();
-		String targetFile = imageUploadLocation + fileName;
+		String fileName = productDto.getProductName()+ productDto.getProductImgUrl().getOriginalFilename();
+		String targetFile = imageUploadLocation +fileName;
 
 		try {
 			FileCopyUtils.copy(productDto.getProductImgUrl().getInputStream(), new FileOutputStream(targetFile));

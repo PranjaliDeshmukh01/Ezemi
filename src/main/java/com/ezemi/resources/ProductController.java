@@ -88,7 +88,7 @@ public class ProductController {
 	public Status updateProductDetails(@ModelAttribute ProductDto productDto, @RequestParam("productId") int productId) {
 		
 		String imageUploadLocation = "d:/uploads/products/";
-		String fileName = productDto.getProductImgUrl().getOriginalFilename();
+		String fileName = productDto.getProductName() + productDto.getProductImgUrl().getOriginalFilename();
 		String targetFile = imageUploadLocation + fileName;
 		
 		try {

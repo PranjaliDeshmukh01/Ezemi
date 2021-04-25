@@ -1,6 +1,6 @@
 package com.ezemi.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ public class Transaction {
 	
 	double amount;
 	
-	LocalDate transactionDate;
+	LocalDateTime transactionDate;
 	
 	String transactionMsg;
 	
@@ -61,13 +61,17 @@ public class Transaction {
 		this.amount = amount;
 	}
 
-	public LocalDate getDate() {
+	public LocalDateTime getTransactionDate() {
 		return transactionDate;
 	}
 
-	public void setDate(LocalDate date) {
-		this.transactionDate = date;
+	public void setTransactionDate(LocalDateTime transactionDate) {
+		this.transactionDate = transactionDate;
 	}
+
+
+
+
 	
 	
 }

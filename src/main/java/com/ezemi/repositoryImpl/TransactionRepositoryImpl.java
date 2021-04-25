@@ -1,6 +1,6 @@
 package com.ezemi.repositoryImpl;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,7 +51,8 @@ public class TransactionRepositoryImpl implements TransactionRepository {
 	public void addTransaction(int userId, double trfAmount, String msg) {
 		Transaction transaction = new Transaction();
 		transaction.setAmount(trfAmount);
-		transaction.setDate(LocalDate.now());
+		transaction.setTransactionDate(LocalDateTime.now());
+		System.out.println(LocalDateTime.now());
 		transaction.setTransactionMsg(msg);
 		transaction.setUser(em.find(User.class, userId));
 		em.merge(transaction);

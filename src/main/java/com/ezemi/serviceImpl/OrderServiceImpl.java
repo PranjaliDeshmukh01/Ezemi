@@ -52,6 +52,7 @@ public class OrderServiceImpl implements OrderService {
 			order.setAmountDue(0);
 			order.setEmiMonths(0);
 			order.setInstallments(0);
+			transactionRepo.addTransaction(userId, order.getOrderCost(), prod.getProductName()+" ordered.");
 		}
 		else {
 			order.setAutoDebit(autodebit);
@@ -63,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
 			transactionRepo.addTransaction(userId, (totalCost/emimonths), "First amount of new order");
 			transactionRepo.reduceCreditBy(userId, totalCost-(totalCost/emimonths));	
 		}
-		String text = user.getFirstname()+", your order for "+prod.getProductName()+" is Confiremed!  Thank you.";
+		String text = user.getFirstname()+", your order for "+prod.getProductName()+" is Confirmed!  Thank you so much for shopping.";
 		String subject = "Order confirmation";
 		emailSerive.sendEmail(user.getEmail(), text, subject);
 		orderRepo.addOrUpdateOrder(order);
