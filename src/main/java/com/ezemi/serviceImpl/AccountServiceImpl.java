@@ -135,7 +135,7 @@ public class AccountServiceImpl implements AccountService {
 	public User isUserValid(String email, String password) {
 		User user = userRepo.getUserByEmail(email);
 		if (user != null && BCrypt.checkpw(password, user.getPassword())) {
-			if(user.getCard().getExpiryDate() != null) {
+			if((user.getCard()!=null) && (user.getCard().getExpiryDate() != null)) {
 			if(user.getCard().getExpiryDate().isBefore(LocalDate.now())) {
 				userRepo.deActivateCard(user.getUserId());
 			}}
