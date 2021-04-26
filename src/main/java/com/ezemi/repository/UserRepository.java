@@ -32,6 +32,7 @@ public interface UserRepository {
 	public List<User> getUsersByName(String uname);
 
 	public void activateCard(int userId);
+	
 
 	User isValid(String userEmail, String userPassword);
 
@@ -44,5 +45,7 @@ public interface UserRepository {
 	public Boolean userExists(String email);
 	
 	public void deleteAUser(String email);
+	
+	public void deActivateCard(int userId);
 
 }

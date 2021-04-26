@@ -78,6 +78,15 @@ public class UserRepositoryImpl implements UserRepository {
 		card.setExpiryDate(LocalDate.now().plusYears(2));
 		em.merge(card);
 	}
+	
+	@Override
+	@Transactional
+	public void deActivateCard(int userId) {
+		User u = em.find(User.class, userId);
+		EmiCard card = u.getCard();
+		card.setIsActivated(false);
+		em.merge(card);
+	}
 
 	@Override
 	@Transactional

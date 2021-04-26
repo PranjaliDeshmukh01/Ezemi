@@ -2,6 +2,7 @@ package com.ezemi.serviceImpl;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -134,6 +135,10 @@ public class AccountServiceImpl implements AccountService {
 	public User isUserValid(String email, String password) {
 		User user = userRepo.getUserByEmail(email);
 		if (user != null && BCrypt.checkpw(password, user.getPassword())) {
+			if(user.getCard().getExpiryDate() != null) {
+			if(user.getCard().getExpiryDate().isBefore(LocalDate.now())) {
+				userRepo.deActivateCard(user.getUserId());
+			}}
 			return user;
 		} else {
 			return null;
