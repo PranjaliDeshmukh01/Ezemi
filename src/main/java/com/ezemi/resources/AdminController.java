@@ -84,10 +84,7 @@ public class AdminController {
 			status.setStatus(StatusType.FAILURE);
 			status.setMessage(e.getMessage());
 			return status;
-		} finally {
-			adminService.addProduct(product);
 		}
-		
 		
 
 		adminService.addProduct(product);
